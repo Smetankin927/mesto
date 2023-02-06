@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>Mesto</title>
+        <link rel="stylesheet" href="./pages/index.css">
+        
+    </head>
+    
+    <body class="page">
+        <header class="header">
+            <img class="header__logo" src="./images/logo.svg">
+        </header>
+
+        <main class="content">
+            <section class="profile">
+                <img class="profile__avatar" src ="./images/eJNfXYdJe34.jpg" alt="ваше фото">
+                <div class="profile__info">
+                    <h1 class="profile__name">
+                        Толя Луговнин
+                    </h1>
+                    <button class="profile__edit-button"></button>
+                    <p class="profile__name-subline"> миллиардер, плейбой, филантроп</p>
+                </div>
+                <img class="profile__add-button" src="./images/ADDVector(1).svg">
+                
+            </section>
+            <section class="cards-grid">
+                <div class="cards-grid__item" >
+                    <img class="cards-grid__image" src="./images/Mask Group.png" alt="дом"> 
+                    
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Средиземье</p>
+                        <button class="cards-grid__like-button"></button>
+                    </div>
+                </div>
+                <div class="cards-grid__item">
+                    <img class="cards-grid__image" src="./images/Mask Group(1).png" alt="гора">
+                    
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Пустошь Смауга</p>
+                        <button class="cards-grid__like-button"></button>
+                    </div>
+                </div>
+                <div class="cards-grid__item">
+                    <img class="cards-grid__image" src="./images/Mask Group(2).png" alt="луг">
+                    
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Лес древних Эльфов</p>
+                        <button class="cards-grid__like-button"></button>
+                    </div>
+                </div>
+                <div class="cards-grid__item">
+                    <img class="cards-grid__image" src="./images/Mask Group(3).png" alt="гора">
+                    
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Гора Гномов-Орков</p>
+                        <button class="cards-grid__like-button"></button>
+                    </div>
+                </div>
+                <div class="cards-grid__item">
+                    <img class="cards-grid__image" src="./images/Mask Group(4).png" alt="луг">
+                    
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Обитель дракона</p>
+                        <button class="cards-grid__like-button"></button>
+                    </div>
+                </div>
+                <div class="cards-grid__item">
+                    <img class="cards-grid__image" src="./images/Mask Group.png" alt="дом">
+                    <div class="cards-grid__underline">
+                        <p class="cards-grid__text">Мой дом</p>
+                        <button class="cards-grid__like-button cards-grid__like-button_active"></button>
+                    </div>
+                </div>
+                    
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copyright">&#169; 2023 Сергей Сметанкин</p>
+        </footer>
+        <section class="popup">
+            <div class="popup__container">
+                <button class="popup__button-close"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <fieldset class="popup__input">
+                    <input type="text" name="name" placeholder="Иванов Иван"> 
+                    <input type="text" name="profession" placeholder="исследователь океана"> 
+                </fieldset>
+                <button class="popup__button-save" type="submit">Сохранить</button>
+            </div>
+        </section>
+        <script src="./script/script.js"></script> 
+    </body>
+</html>
