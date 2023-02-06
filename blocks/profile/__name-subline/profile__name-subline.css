@@ -1,0 +1,23 @@
+.profile__name-subline{
+    margin-top: 16px;
+    margin-bottom: 0;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 690px)
+{
+    .profile__name-subline{
+        margin-top: 14px;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+    
+}

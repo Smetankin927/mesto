@@ -1,0 +1,11 @@
+.cards-grid__underline{
+    max-width: 246px;
+    margin-top: 25px; /*FIXME*/
+    margin-left: 21px; /*FIXME*/
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+
+}

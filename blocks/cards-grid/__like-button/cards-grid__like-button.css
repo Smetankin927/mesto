@@ -1,0 +1,12 @@
+.cards-grid__like-button{
+    width: 22px;
+    height: 19px;
+
+    background-image: url('../../../images/Like.svg');
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    border: none;
+}
+

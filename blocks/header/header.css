@@ -1,0 +1,18 @@
+.header{  
+    max-width: 880px;
+    width: 100%;
+    min-width: 320px;
+    height: 74px; /*scale*/
+
+    margin: auto;
+ 
+    border-bottom: 1px solid #aaa; /*сделать цвет через rgba для opacity 0.7*/
+}
+
+@media screen and (max-width: 500px)
+{
+    .header{
+        height: 56px;
+    }
+    
+}
