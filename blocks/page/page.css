@@ -3,8 +3,20 @@
     min-width: 320px;
     width: 100%;
     margin: 45px auto;
-    background-color: #000000;/*FIXME*/
+    background-color: #000000; /*FIXME*/
     font-family: 'Inter', 'Arial', sans-serif;
+
+    /*Подгонка размера текста */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+
+    /*Сглаживание*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /*рендеринг*/
+    text-rendering: optimizeLegibility;
 }
 
 @media screen and (max-width: 500px)
