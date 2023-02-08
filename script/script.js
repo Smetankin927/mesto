@@ -32,4 +32,4 @@ function updateProfile() {
 
 edit.addEventListener('click', showPopup); 
 popupClose.addEventListener('click', hidePopup);
-popupSave.addEventListener('click', updateProfile) /*здесь будет submit*/
+popupSave.addEventListener('sumbit', updateProfile) /*здесь будет submit*/
