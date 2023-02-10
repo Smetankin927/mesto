@@ -11,6 +11,7 @@
     outline: 0;
     background: transparent;
     transition: border-color 0.2s;
+    padding: 0 0 10px;
 
   }
 

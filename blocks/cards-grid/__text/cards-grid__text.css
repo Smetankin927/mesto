@@ -1,14 +1,11 @@
-.cards-grid__text{
-    
+.cards-grid__text{ 
     margin: 0;
     padding: 0;
     max-width: 70%; /*подогнать*/
-
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
-
     display: inline-block;
     text-align:center;
     text-overflow: ellipsis;
