@@ -6,7 +6,7 @@ let profProfile = profile.querySelector('.profile__name-subline');
 let popup = document.querySelector(".popup");
 let popupContainer = popup.querySelector('.popup__container')
 let popupClose = popupContainer.querySelector('.popup__button-close');
-let popupSave = popupContainer.querySelector('.popup__button-save')
+let popupForm = popupContainer.querySelector('.popup__input');
 
 let popupInName = popupContainer.querySelector('input[name = "name"]');
 let popupInProf = popupContainer.querySelector('input[name = "profession"]');
@@ -33,4 +33,4 @@ function updateProfile (evt) {
 
 edit.addEventListener('click', showPopup); 
 popupClose.addEventListener('click', hidePopup);
-popupSave.addEventListener('submit', updateProfile); /*здесь будет submit*/
+popupForm.addEventListener('submit', updateProfile); /*здесь будет submit*/

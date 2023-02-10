@@ -1,4 +1,4 @@
-.cards-grid__like-button{
+.cards-grid__like-button {
     width: 22px;
     height: 19px;
     background-image: url('../../../images/Like.svg');
@@ -8,3 +8,6 @@
     border: none;
 }
 
+.cards-grid__like-button:hover {
+    cursor: pointer;
+}

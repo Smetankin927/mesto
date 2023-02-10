@@ -13,25 +13,21 @@
     box-sizing: border-box;
 }
 
-.profile__add-button:hover{
+.profile__add-button:hover {
     cursor: pointer;
     opacity: 0.6;
 }
 
-@media screen and (min-width: 691px) and (max-width: 900px)
-{
-  .profile__add-button{
+@media screen and (min-width: 691px) and (max-width: 900px) {
+  .profile__add-button {
         margin-right: 10px;
     }
-    
 }
 
-@media screen and (max-width: 690px)
-{
-    .profile__add-button{
+@media screen and (max-width: 690px) {
+    .profile__add-button {
         width: 282px;
         margin: 36px auto 0;
         background-size: 16px;
     }
-    
 }

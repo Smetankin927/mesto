@@ -11,21 +11,16 @@
     row-gap: 20px;
 }
 
-@media screen and (max-width: 900px)
-{
-    .cards-grid{
+@media screen and (max-width: 900px) {
+    .cards-grid {
         grid-template-columns: repeat(2, 282px);
         grid-template-rows: repeat(3, 361px);
-        
     }
-    
-}@media screen and (max-width: 590px)
-{
-    .cards-grid{
+}
+@media screen and (max-width: 590px) {
+    .cards-grid {
         margin-top: 36px;
         grid-template-columns: 282px;
         grid-template-rows: repeat(6, 361px);
-        
     }
-    
 }

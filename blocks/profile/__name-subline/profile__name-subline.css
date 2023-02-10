@@ -1,4 +1,4 @@
-.profile__name-subline{
+.profile__name-subline {
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -16,12 +16,10 @@
     color: #FFFFFF;
 }
 
-@media screen and (max-width: 690px)
-{
-    .profile__name-subline{
+@media screen and (max-width: 690px) {
+    .profile__name-subline {
         font-size: 14px;
         line-height: 17px;
         text-align: center;
     }
-    
 }
