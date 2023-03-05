@@ -1,0 +1,18 @@
+.cards-grid__trash-button{
+    padding: 0;
+    width: 18px;
+    height: 19px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cards-grid__trash-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

@@ -29,70 +29,61 @@
                 
             </section>
             <section class="cards-grid">
-                <div class="cards-grid__item" >
-                    <img class="cards-grid__image" src="./images/MaskGroup.png" alt="дом"> 
-                    
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Средиземье</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
-                <div class="cards-grid__item">
-                    <img class="cards-grid__image" src="./images/MaskGroup1.png" alt="гора">
-                    
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Пустошь Смауга</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
-                <div class="cards-grid__item">
-                    <img class="cards-grid__image" src="./images/MaskGroup2.png" alt="луг">
-                    
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Домбай</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
-                <div class="cards-grid__item">
-                    <img class="cards-grid__image" src="./images/MaskGroup3.png" alt="гора">
-                    
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Гора Гномов-Орков</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
-                <div class="cards-grid__item">
-                    <img class="cards-grid__image" src="./images/MaskGroup4.png" alt="луг">
-                    
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Обитель дракона</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
-                <div class="cards-grid__item">
-                    <img class="cards-grid__image" src="./images/MaskGroup.png" alt="дом">
-                    <div class="cards-grid__underline">
-                        <h2 class="cards-grid__text">Мой дом</h2>
-                        <button class="cards-grid__like-button" type="button"></button>
-                    </div>
-                </div>
+            <!--здесь существуют карточки-->    
+            <!--///-->
             </section>
         </main>
 
         <footer class="footer">
             <p class="footer__copyright">&#169; 2023 Сергей Сметанкин</p>
         </footer>
-        <section class="popup">
+        <!--попап профиля-->
+        <section class="popup popup_profile">
             <div class="popup__container">
                 <button class="popup__button-close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__input" name="form1">
-                    <input class="popup__input-text" type="text" name="name" placeholder="Иванов Иван"> 
-                    <input class="popup__input-text" type="text" name="profession" placeholder="исследователь океана"> 
+                    <input class="popup__input-text" type="text" name="first" placeholder="Иванов Иван"> 
+                    <input class="popup__input-text" type="text" name="second" placeholder="исследователь океана"> 
                     <button class="popup__button-save" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
+        <!--попап места-->
+        <section class="popup popup_place">
+            <div class="popup__container">
+                <button class="popup__button-close" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__input" name="form2">
+                    <input class="popup__input-text" type="text" name="first" placeholder="Название"> 
+                    <input class="popup__input-text" type="text" name="second" placeholder="Ссылка на картинку"> 
+                    <button class="popup__button-save" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </section>
+        <!--попап картинки-->
+        <section class="popup popup_image">
+            <div class="popup__container_image">
+                <button class="popup__button-close" type="button"></button>
+                <img class="popup__huge-image" src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' alt="увеличенная картинка">
+                <p class="popup__image-text">карачаево-черкессия</p>
+            </div>
+        </section>
+        <!--шаблон карточки--> 
+        <template id="template-card">
+            <div class="cards-grid__item">
+                <button class="cards-grid__trash-button">
+                    <img class="cards-grid__trash-fimg" src="./images/trash_lid.svg">
+                    <img class="cards-grid__trash-simg" src="./images/trash_basket.svg">
+                </button>
+                <img class="cards-grid__image" src="./images/MaskGroup.png" alt="дом">
+                <div class="cards-grid__underline">
+                    <h2 class="cards-grid__text">Мой дом</h2>
+                    <button class="cards-grid__like-button" type="button"></button>
+                </div>
+            </div>
+        </template>
+        <!--///////-->
         <script src="./script/script.js"></script> 
     </body>
 </html>
