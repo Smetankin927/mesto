@@ -60,7 +60,7 @@ function chosePopup(tarName){
   }
 
   if(tarName  === 'cards-grid__image'){
-    popupContainer = popup.querySelector('.popup__container_image');
+    popupContainer = popup.querySelector('.popup__container-image');
     popupImage = popupContainer.querySelector('.popup__huge-image');
     popupImageText = popupContainer.querySelector('.popup__image-text');
   }
