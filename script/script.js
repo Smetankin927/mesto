@@ -1,3 +1,4 @@
+//NEW VERSION
 const initialCards = [
   {
     name: 'Архыз',
@@ -65,11 +66,12 @@ const imgPopupContainer = imgPopup.querySelector('.popup__container-image');
 const imgPopupImg = imgPopupContainer.querySelector('.popup__huge-image');
 const imgPopupText = imgPopupContainer.querySelector('.popup__image-text');
 //значения при открытии попапа картинки (функция тк много разных)
-function imgPopupValues(evt){
-const cardTmptext = evt.target.nextElementSibling.querySelector('.cards-grid__text');//костыль?
-console.log(evt.target.src.trim())
-imgPopupImg.src = evt.target.src.trim();
-imgPopupText.textContent = cardTmptext.textContent.trim();
+function setImgPopupValues(evt){//пока нигде не вызвана...
+  const cardTmptext = evt.target.nextElementSibling.querySelector('.cards-grid__text');//костыль?
+  console.log(evt.target.src.trim())
+  imgPopupImg.src = evt.target.src.trim();
+  imgPopupImg.alt = cardTmptext.textContent.trim(); //alt
+  imgPopupText.textContent = cardTmptext.textContent.trim();
 }
 //кнопка закрыть попап имадж
 const imgPopupClose = imgPopupContainer.querySelector('.popup__button-close');
@@ -79,11 +81,11 @@ const addButton = document.querySelector('.profile__add-button');
 const itemGridWrapper = document.querySelector('.cards-grid');
 const template = document.getElementById('template-card');
 //кнопки показа попапа
-edit.addEventListener('click', (evt) => {showPopup(evt,profilePopup);}); 
-addButton.addEventListener('click', (evt) => {showPopup(evt,cardPopup);}); 
+edit.addEventListener('click', (evt) => {showPopup(profilePopup);}); 
+addButton.addEventListener('click', (evt) => {showPopup(cardPopup);}); 
 
 //универсальные функции
-function showPopup(evt, popup) {
+function showPopup(popup) {
   popup.classList.add('popup_active');
 }
 
@@ -101,13 +103,13 @@ function updateProfile (evt) {
 
 //карточки функции
 //лайкаем 
-function reactionCard (evt) {
-evt.target.classList.toggle('cards-grid__like-button_active');
+function toggleLike (evt) {
+  evt.target.classList.toggle('cards-grid__like-button_active');
 }
 //удаляем
 function deleteCard (evt) {
-evt.target.closest('.cards-grid__item').remove();
-//удалить из списка!!!!
+  evt.target.closest('.cards-grid__item').remove();
+  //удалить из списка!!!!
 }
 
 
@@ -122,12 +124,12 @@ const getItemElement = (cardObj) => {
   // внешка карточек закончена
   //кнопка лайка
   const likeButton = newCardItem.querySelector('.cards-grid__like-button');
-  likeButton.addEventListener('click', reactionCard);
+  likeButton.addEventListener('click', toggleLike);
   //кнопка удаления
   const deleteButton = newCardItem.querySelector('.cards-grid__trash-button');
   deleteButton.addEventListener('click', deleteCard);
   //
-  newCardImage.addEventListener('click', (evt) => {showPopup(evt,imgPopup);});
+  newCardImage.addEventListener('click', (evt) => {setImgPopupValues(evt);showPopup(imgPopup);});
   return newCardItem;
 }
 //отрисовываем карточки
@@ -137,15 +139,16 @@ const renderItem = (wrap, cardObj) => {
 
 //добавляем карточки
 function addCard(evt){
-evt.preventDefault();
-//
-const popupCardText = cardPopupPlace.value.trim();
-const popupCardLinks = cardPopupLink.value.trim();
-if(popupCardText && popupCardLinks){
-  const newCardTmp = {name:popupCardText, link:popupCardLinks};//создаем новую временную карточку
-  renderItem(itemGridWrapper,newCardTmp);//отрисовка новой карточки перед всеми ранее
-  hidePopup(cardPopup); 
-}
+  evt.preventDefault();
+  //
+  const popupCardText = cardPopupPlace.value.trim();
+  const popupCardLinks = cardPopupLink.value.trim();
+  if(popupCardText && popupCardLinks){
+    const newCardTmp = {name:popupCardText, link:popupCardLinks};//создаем новую временную карточку
+    renderItem(itemGridWrapper,newCardTmp);//отрисовка новой карточки перед всеми ранее
+    evt.target.reset();
+    hidePopup(cardPopup); 
+  }
 }
 //рендерим начальный список
 initialCards.reverse().forEach((title) => {// REVERSE
