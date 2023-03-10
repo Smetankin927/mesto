@@ -42,9 +42,17 @@
             <div class="popup__container">
                 <button class="popup__button-close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__input" name="form1">
-                    <input class="popup__input-text" type="text" name="first" placeholder="Иванов Иван"> 
-                    <input class="popup__input-text" type="text" name="second" placeholder="исследователь океана"> 
+                <form class="popup__input" name="form1" novalidate>
+                    <div class="popup__section">
+                        <input class="popup__input-text" type="text" name="first" placeholder="Ваше имя" minlength="2" maxlength="40" required>
+                        <span class="popup__input-error" id="profile-name-error"> </span>
+                    </div>
+                    <!---->
+                    <div class="popup__section">   
+                        <input class="popup__input-text" type="text" name="second" placeholder="О себе" minlength="2" maxlength="200" required> 
+                        <span class="popup__input-error" id="profile-about-error"> </span>
+                    </div> 
+                    <!---->
                     <button class="popup__button-save" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -54,9 +62,17 @@
             <div class="popup__container">
                 <button class="popup__button-close" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__input" name="form2">
-                    <input class="popup__input-text" type="text" name="first" placeholder="Название"> 
-                    <input class="popup__input-text" type="text" name="second" placeholder="Ссылка на картинку"> 
+                <form class="popup__input" name="form2" novalidate>
+                    <div class="popup__section">
+                        <input class="popup__input-text" type="text" name="first" placeholder="Название" minlength="2" maxlength="30" required>
+                        <span class="popup__input-error" id="place-name-error"> </span>
+                    </div>
+                    <!----> 
+                    <div class="popup__section">
+                        <input class="popup__input-text" type="url" name="second" placeholder="Ссылка на картинку" required> 
+                        <span class="popup__input-error" id="place-url-error"> </span>
+                    </div>
+                    <!----> 
                     <button class="popup__button-save" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -84,6 +100,7 @@
             </div>
         </template>
         <!--///////-->
+        <script src="./script/validate.js"></script>
         <script src="./script/script.js"></script> 
     </body>
 </html>

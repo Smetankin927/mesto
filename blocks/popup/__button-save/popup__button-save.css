@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 50px;
     margin: auto;
-    margin-top: 48px;
+    margin-top: 18px;
     padding: 0;
     background-color: #000000;
     color: #FFFFFF;
@@ -20,7 +20,7 @@
 
 @media screen  and (max-width: 590px) {
     .popup__button-save {
-        margin-top: 45px;
+        margin-top: 15px; /*FIXME*/
         font-size: 14px;
         line-height: 17px;
         min-height: 46px;

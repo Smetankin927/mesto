@@ -83,14 +83,36 @@ const template = document.getElementById('template-card');
 //кнопки показа попапа
 edit.addEventListener('click', (evt) => {showPopup(profilePopup);}); 
 addButton.addEventListener('click', (evt) => {showPopup(cardPopup);}); 
+//все попапы
+const popups = document.querySelectorAll('.popup');
+// закрытие по оверлэю
+function clickOverlayHidePopup (evt, popup){
+  if(evt.target === evt.currentTarget){
+    hidePopup(popup)
+  }
+}
+popups.forEach(item => {
+    item.addEventListener('click', (evt) =>{
+      clickOverlayHidePopup (evt, item)
+  });
+})
+//слушаем Escape
+function listenEscape(evt){ 
+  const popup = document.querySelector('.popup_active');
+  if (evt.key === 'Escape') {
+    hidePopup(popup);
+  }
+}
 
 //универсальные функции
 function showPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('keydown', listenEscape);
 }
 
 function hidePopup(popup){
-popup.classList.remove('popup_active');
+  popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', listenEscape);
 }
 //профиль функции
 function updateProfile (evt) {
@@ -109,7 +131,6 @@ function toggleLike (evt) {
 //удаляем
 function deleteCard (evt) {
   evt.target.closest('.cards-grid__item').remove();
-  //удалить из списка!!!!
 }
 
 
@@ -155,3 +176,16 @@ initialCards.reverse().forEach((title) => {// REVERSE
 renderItem(itemGridWrapper, title)
 })
 
+// Код отсюда
+
+const validationOptions = {
+  formSelector: '.popup__input',
+  submitSelector: '.popup__button-save',
+  inputSelector: '.popup__input-text',
+  inputSectionSelector: '.popup__section',
+  inputErrorSelector: '.popup__input-error',
+  inputErrorClass: 'popup__input-error_active',
+  disabledButtonClass: 'popup__button-save_inactive',
+};
+
+enableValidation(validationOptions);
