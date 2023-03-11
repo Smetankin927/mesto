@@ -38,9 +38,10 @@ const profilePopupContainer = profilePopup.querySelector('.popup__container');
 const profilePopupForm = profilePopupContainer.querySelector('.popup__input');
 const profilePopupName = profilePopupContainer.querySelector('input[name = "first"]');
 const profilePopupAbout = profilePopupContainer.querySelector('input[name = "second"]');
+//массив инпутов профиля
+const profileInputsArray = Array.from(profilePopupContainer.querySelectorAll('.popup__input-text'));
 //значения при открытии попапа прпофиля
-profilePopupName.value = nameProfile.textContent.trim();
-profilePopupAbout.value = profProfile.textContent.trim();
+//delete
 //кнопка закрыть попап эдит профиль
 const profilePopupClose = profilePopupContainer.querySelector('.popup__button-close');
 profilePopupClose.addEventListener('click', (evt) => {hidePopup(profilePopup);});
@@ -52,6 +53,8 @@ const cardPopupContainer = cardPopup.querySelector('.popup__container');
 const cardPopupForm = cardPopupContainer.querySelector('.popup__input');
 const cardPopupPlace = cardPopupContainer.querySelector('input[name = "first"]');
 const cardPopupLink = cardPopupContainer.querySelector('input[name = "second"]');
+//массив инпутов карточек
+const cardInputArray = Array.from(cardPopupContainer.querySelectorAll('.popup__input-text'));
 //значения при открытии попапа карточки
 cardPopupPlace.value = '';
 cardPopupLink.value = '';
@@ -80,9 +83,32 @@ imgPopupClose .addEventListener('click', (evt) => {hidePopup(imgPopup);});
 const addButton = document.querySelector('.profile__add-button');
 const itemGridWrapper = document.querySelector('.cards-grid');
 const template = document.getElementById('template-card');
+
+// значения попапа профиля перед открытием
+function setProfilePopupValues (){
+  profilePopupName.value = nameProfile.textContent.trim();
+  profilePopupAbout.value = profProfile.textContent.trim();
+  //убираем ошибки формы
+  profileInputsArray.forEach(item => {toggleInputState(item, validationOptions)})
+  //выставляем значение кнопки
+  const submitElement = profilePopupContainer.querySelector(validationOptions.submitSelector);
+  toggleButtonState(profileInputsArray, submitElement, validationOptions.disabledButtonClass);
+}
 //кнопки показа попапа
-edit.addEventListener('click', (evt) => {showPopup(profilePopup);}); 
-addButton.addEventListener('click', (evt) => {showPopup(cardPopup);}); 
+edit.addEventListener('click', (evt) => {
+  // записываем значения профиля и сбрасываем errors
+  setProfilePopupValues();
+  //отображаем попап
+  showPopup(profilePopup);
+}); 
+
+addButton.addEventListener('click', (evt) => {
+  //выставляем значение кнопки
+  const submitElement = cardPopupContainer.querySelector(validationOptions.submitSelector);
+  toggleButtonState(cardInputArray,submitElement, validationOptions.disabledButtonClass);
+  //показываем попап
+  showPopup(cardPopup);
+}); 
 //все попапы
 const popups = document.querySelectorAll('.popup');
 // закрытие по оверлэю
@@ -98,8 +124,8 @@ popups.forEach(item => {
 })
 //слушаем Escape
 function listenEscape(evt){ 
-  const popup = document.querySelector('.popup_active');
   if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_active');
     hidePopup(popup);
   }
 }
@@ -122,6 +148,8 @@ function updateProfile (evt) {
   profProfile.textContent = profilePopupAbout.value.trim();
   hidePopup(profilePopup); 
 }
+
+
 
 //карточки функции
 //лайкаем 
