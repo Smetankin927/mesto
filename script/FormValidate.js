@@ -23,7 +23,6 @@ export class FormValidator {
     
     /**/
     _setInputState(inputElement, isValid) {
-        //const { inputSectionSelector, inputErrorSelector, inputErrorClass } = options;
         const inputSectionElement = inputElement.closest(this._inputSectionSelector);
         const errorElement = inputSectionElement.querySelector(this._inputErrorSelector);
         if (isValid) {
@@ -59,7 +58,7 @@ export class FormValidator {
         }
     };
     
-    _setEventListeners(){
+    _setEventListeners() {
         this._submitElement = this._form.querySelector(this._submitSelector);
         this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
     
@@ -71,9 +70,31 @@ export class FormValidator {
         });
         this._toggleButtonState();
     };
+    
+    resetInputs() {
+        this._inputs.forEach((inputElement) => {//<==очищаем ошибки ==
+            inputElement.value = '';
+        });
+    }
+
+    _resetErrorsFromInput(inputElement) {
+        const inputSectionElement = inputElement.closest(this._inputSectionSelector);
+        const errorElement = inputSectionElement.querySelector(this._inputErrorSelector);
+        this._hiddenError(errorElement) //<==очищаем ошибки ==
+    }
+
+    resetValidation() {
+        this._toggleButtonState(); //<== управляем кнопкой ==
+  
+        this._inputs.forEach((inputElement) => {//<==очищаем ошибки ==
+            this._resetErrorsFromInput(inputElement)
+        });
+  
+      }
+  
     ///////////////
 
-    enableValidation(){   
+    enableValidation() {
         this._setEventListeners();
-        };
+    };
 }

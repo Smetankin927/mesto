@@ -34,55 +34,48 @@ const edit = profile.querySelector('.profile__edit-button');
 const nameProfile = profile.querySelector('.profile__name');
 const profProfile = profile.querySelector('.profile__name-subline');
 
-//попап профиля////////////////////////////////////////////////////////////////////
+//попап профиля/////////////////////////
 const profilePopup = document.querySelector('.popup.popup_profile');
 const profilePopupContainer = profilePopup.querySelector('.popup__container');
 const profilePopupForm = profilePopupContainer.querySelector('.popup__input');
 const profilePopupName = profilePopupContainer.querySelector('input[name = "first"]');
 const profilePopupAbout = profilePopupContainer.querySelector('input[name = "second"]');
-//массив инпутов профиля
-const profileInputsArray = Array.from(profilePopupContainer.querySelectorAll('.popup__input-text'));
-//значения при открытии попапа прпофиля
-//delete
-//кнопка закрыть попап эдит профиль
-const profilePopupClose = profilePopupContainer.querySelector('.popup__button-close');
-profilePopupClose.addEventListener('click', (evt) => {hidePopup(profilePopup);});
 //слушатель на форму профиля
 profilePopupForm.addEventListener('submit', updateProfile);
-//попап карточки//////////////////////////////////////////////////////////////////////
+//попап карточки///////////////
 const cardPopup  = document.querySelector('.popup.popup_place');
 const cardPopupContainer = cardPopup.querySelector('.popup__container');
 const cardPopupForm = cardPopupContainer.querySelector('.popup__input');
 const cardPopupPlace = cardPopupContainer.querySelector('input[name = "first"]');
 const cardPopupLink = cardPopupContainer.querySelector('input[name = "second"]');
-//массив инпутов карточек
-const cardInputArray = Array.from(cardPopupContainer.querySelectorAll('.popup__input-text'));
-//значения при открытии попапа карточки
-cardPopupPlace.value = '';
-cardPopupLink.value = '';
-// кнопка закрыть попап эдд кард
-const cardPopupClose = cardPopupContainer.querySelector('.popup__button-close');
-cardPopupClose.addEventListener('click', (evt) => {hidePopup(cardPopup);});
+// кнопка закрыть попап 
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__button-close');
+
+// с окончанием `s` нужно обязательно, так как много кнопок
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => hidePopup(popup));
+});
+
 //слушатель на форму карточки
 cardPopupForm.addEventListener('submit', addCard);
-//попап картинки////////////////////////////////////////////////////////////////////////
+//попап картинки///////////
 const imgPopup = document.querySelector('.popup.popup_image');
 const imgPopupContainer = imgPopup.querySelector('.popup__container-image');
 const imgPopupImg = imgPopupContainer.querySelector('.popup__huge-image');
 const imgPopupText = imgPopupContainer.querySelector('.popup__image-text');
-//значения при открытии попапа картинки (функция тк много разных)
-//кнопка закрыть попап имадж
-const imgPopupClose = imgPopupContainer.querySelector('.popup__button-close');
-imgPopupClose .addEventListener('click', (evt) => {hidePopup(imgPopup);});
+
 //карточки кнопка эдд и окружение
 const addButton = document.querySelector('.profile__add-button');
 const itemGridWrapper = document.querySelector('.cards-grid');
 const template = document.getElementById('template-card');
 
-////////Валидация///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////Валидация//////////////////////////////////////////////
 
 const validationOptions = {
-  formSelector: '.popup__input',
   submitSelector: '.popup__button-save',
   inputSelector: '.popup__input-text',
   inputSectionSelector: '.popup__section',
@@ -97,17 +90,14 @@ formValidatorProfile.enableValidation();
 
 const formValidatorCard = new FormValidator(validationOptions, cardPopupForm);
 formValidatorCard.enableValidation();
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 // значения попапа профиля перед открытием
 function setProfilePopupValues (){
   profilePopupName.value = nameProfile.textContent.trim();
   profilePopupAbout.value = profProfile.textContent.trim();
   //убираем ошибки формы
-  profileInputsArray.forEach(item => {formValidatorProfile._toggleInputState(item);})
-  //выставляем значение кнопки
-  formValidatorProfile._toggleButtonState();
-
+  formValidatorProfile.resetValidation();
 }
 //кнопки показа попапа
 edit.addEventListener('click', (evt) => {
@@ -118,13 +108,13 @@ edit.addEventListener('click', (evt) => {
 }); 
 
 addButton.addEventListener('click', (evt) => {
-  //выставляем значение кнопки
-  const submitElement = cardPopupContainer.querySelector(validationOptions.submitSelector);
-
-  formValidatorCard._toggleButtonState();
+  //сброс значений и валидации
+  formValidatorCard.resetValidation();
+  formValidatorCard.resetInputs();
   //показываем попап
   showPopup(cardPopup);
 }); 
+
 //все попапы
 const popups = document.querySelectorAll('.popup');
 // закрытие по оверлэю
@@ -179,10 +169,15 @@ function handleCardImage (cardName, cardImg) {
 
 //отрисовываем карточки
 
+function createCard(item) {
+  // тут создаете карточку и возвращаете ее
+  const newCard = new Card(item, 'template-card', handleCardImage);
+  return newCard.generateCard()
+}
+
 const renderItem = (wrap, cardObj) => {
-  let newCard = new Card(cardObj, 'template-card', handleCardImage); //передаем аргументы
-  let cardElement = newCard.generateCard(); // забираем готовую карточку
-  wrap.prepend(cardElement)//отрисовка хочу с конца массива потому что вызываю от реверс
+  const cardElement = createCard(cardObj)
+  wrap.prepend(cardElement)
 }
 
 //добавляем карточки
