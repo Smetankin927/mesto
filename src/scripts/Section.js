@@ -10,7 +10,11 @@ export  class Section {
       this._renderedItems.forEach(item => this._renderer(item));
     }
   
+    prependItem(element) {
+      this._container.prepend(element);//fix
+    }
+  
     setItem(element) {
-      this._container.append(element);
+      this._container.append(element);//fix
     }
   }

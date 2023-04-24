@@ -5,34 +5,8 @@ import { PopupWithImage } from "./scripts/PopupWithImage.js";
 import { PopupWithForm } from "./scripts/PopupWithForm.js";
 import { UserInfo } from "./scripts/UserInfo.js";
 import { Section } from "./scripts/Section.js";
-
+import { initialCards } from "./scripts/utils/constants.js";
 //NEW VERSION
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 //профиль
 const profile = document.querySelector('.profile');
@@ -51,7 +25,7 @@ profilePopup.setEventListeners()
 
 //слушатель на кнопку профиля
 edit.addEventListener('click', () => {
-    profilePopup.setInitUserInfo(profileUserInfo.getUserInfo());
+    profilePopup.setInputValues(profileUserInfo.getUserInfo());//fixme
     formValidatorProfile.resetValidation();
     profilePopup.open();
   }); 
@@ -112,17 +86,16 @@ function addCard(data){
   if(popupCardText && popupCardLinks){
     const newCardObj = {name:popupCardText, link:popupCardLinks};//создаем новую временную карточку
     const cardElement = createCard(newCardObj);
-    cardList.setItem(cardElement);
-    cardPopup._form.reset();
+    cardList.prependItem(cardElement);
     cardPopup.close(); 
   }
 }
-
+//попап картинки
+const imgPopup = new PopupWithImage(".popup.popup_image");
+imgPopup.setEventListeners();
 //функця показа изображения карточки
 function handleCardImage (cardName, cardImg) { //handleCardClick
-  const imgPopup = new PopupWithImage(".popup.popup_image", {src:cardImg, alt: cardName});
-  imgPopup.setEventListeners();
-  imgPopup.open();
+  imgPopup.open({src:cardImg, alt: cardName});//fix
 }
 
 //отрисовываем карточки
