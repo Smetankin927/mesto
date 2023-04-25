@@ -5,7 +5,7 @@ import { PopupWithImage } from "./scripts/PopupWithImage.js";
 import { PopupWithForm } from "./scripts/PopupWithForm.js";
 import { UserInfo } from "./scripts/UserInfo.js";
 import { Section } from "./scripts/Section.js";
-import { initialCards } from "./scripts/utils/constants.js";
+import { initialCards, validationOptions } from "./scripts/utils/constants.js";
 //NEW VERSION
 
 //профиль
@@ -38,14 +38,7 @@ function updateProfile (data) {
 
 ////////Валидация//////////////////////////////////////////////
 
-const validationOptions = {
-  submitSelector: '.popup__button-save',
-  inputSelector: '.popup__input-text',
-  inputSectionSelector: '.popup__section',
-  inputErrorSelector: '.popup__input-error',
-  inputErrorClass: 'popup__input-error_active',
-  disabledButtonClass: 'popup__button-save_inactive',
-};
+//импорт из consants
 
 //валидация профиля
 const formValidatorProfile = new FormValidator(validationOptions,profilePopup._form);

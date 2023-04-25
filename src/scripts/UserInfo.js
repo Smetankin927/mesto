@@ -7,7 +7,7 @@ export class UserInfo {
     }
 
     getUserInfo() {
-        return {name: this._name, info: this._info}
+        return {first: this._name, second: this._info}
     }
 
     setUserInfo(data) {
