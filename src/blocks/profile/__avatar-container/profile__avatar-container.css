@@ -1,0 +1,16 @@
+.profile__avatar-container{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 120px;
+    width: 120px;
+    position: relative;
+}
+.profile__avatar-container:hover .profile__avatar-button{
+    display: inline-block;
+  }
+@media screen and (min-width: 692px) and (max-width: 900px) {
+    .profile__avatar-container{
+      margin-left: 27px;
+    } 
+  }

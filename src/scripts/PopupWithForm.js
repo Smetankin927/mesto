@@ -1,9 +1,10 @@
 import { Popup } from "./Popup.js"; 
 
 export class PopupWithForm extends Popup {
-    constructor({popupSelector, handleFormSubmit}) {
-        super(popupSelector);
-        this._handleFormSubmit = handleFormSubmit;
+    constructor(data,API) {
+        super(data.popupSelector);
+        this._handleFormSubmit = data.handleFormSubmit;
+        this._api = API;
         this._formSelector = ".popup__input";
         this._inputList = this._element.querySelectorAll(".popup__input-text");
     }
@@ -23,14 +24,11 @@ export class PopupWithForm extends Popup {
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleFormSubmit(this._getInputValues());
+            //console.log(this._api,"second POP");
+            this._handleFormSubmit(this._getInputValues(), this._api);
           })
     }
 
-    /*setInitUserInfo(data) {
-        this._form.querySelector('input[name = "first"]').value = data.name.trim();
-        this._form.querySelector('input[name = "second"]').value = data.info.trim();
-    }*/
     setInputValues(data) {
         this._inputList.forEach((input) => {
           // тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута

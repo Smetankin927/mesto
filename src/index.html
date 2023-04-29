@@ -16,13 +16,18 @@
 
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src ="<%=require('./images/eJNfXYdJe34.jpg')%>" alt="фото">
+                <div class="profile__avatar-container"><!--add-->
+                    <img class="profile__avatar" src ="" alt="фото">
+                    <button class="profile__avatar-button"><!--add--></button>
+                </div><!--add-->
                 <div class="profile__info">
                     <div class="profile__person">
                         <h1 class="profile__name">
-                            jvgcvbcxvbdcxzcvzbczcbx
+                            <!--jvgcvbcxvbdcxzcvzbczcbx-->
                         </h1>
-                        <p class="profile__name-subline">gfcbvcxcxdvxzzdcxzkghjfghhgmfcjgxgfchgdxjjjjjjjjjjjj</p>
+                        <p class="profile__name-subline">
+                           <!--gfcbvcxcxdvxzzdcxzkghjfghhgmfcjgxgfchgdxjjjjjjjjjjjj--> 
+                        </p>
                     </div>
                     <button class="profile__edit-button" type="button"></button>
                 </div>
@@ -54,7 +59,7 @@
                         <span class="popup__input-error" id="profile-about-error"> </span>
                     </div> 
                     <!---->
-                    <button class="popup__button-save" type="submit">Сохранить</button>
+                    <button class="popup__button-save popup__button-save-prof" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
@@ -74,7 +79,7 @@
                         <span class="popup__input-error" id="place-url-error"> </span>
                     </div>
                     <!----> 
-                    <button class="popup__button-save" type="submit">Сохранить</button>
+                    <button class="popup__button-save popup__button-save-place" type="submit">Создать</button>
                 </form>
             </div>
         </section>
@@ -84,6 +89,31 @@
                 <button class="popup__button-close" type="button"></button>
                 <img class="popup__huge-image" src="<%=require('./images/MaskGroup.png')%>" alt="увеличенная картинка">
                 <p class="popup__image-text">карачаево-черкессия</p>
+            </div>
+        </section>
+        <!--попап обновления аватара профиля-->
+        <section class="popup popup_avatar">
+            <div class="popup__container">
+                <button class="popup__button-close" type="button"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__input" name="form1" novalidate>
+                    <div class="popup__section">
+                        <input class="popup__input-text" type="url" name="second" placeholder="Ссылка на картинку" required> 
+                        <span class="popup__input-error" id="place-url-error"> </span>
+                    </div>
+                    <!---->
+                    <button class="popup__button-save popup__button-save-avat" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </section>
+        <!--попап удаления карточки-->
+        <section class="popup popup_delCard">
+            <div class="popup__container">
+                <button class="popup__button-close" type="button"></button>
+                <h2 class="popup__title">Хорошо подумал?</h2>
+                <form class="popup__input popup__input-delCard" name="form1" novalidate>
+                    <button class="popup__button-save popup__button-save-delCard" type="submit">Удоляй</button>
+                </form>
             </div>
         </section>
         <!--шаблон карточки--> 
@@ -96,7 +126,10 @@
                 <img class="cards-grid__image" src="<%=require('./images/MaskGroup.png')%>" alt="дом">
                 <div class="cards-grid__underline">
                     <h2 class="cards-grid__text">Мой дом</h2>
-                    <button class="cards-grid__like-button" type="button"></button>
+                    <div class="cards-grid__likes"><!--add-->
+                        <button class="cards-grid__like-button" type="button"></button>
+                        <p class="cards-grid__like-counter">5</p> <!--add-->
+                    </div>
                 </div>
             </div>
         </template>
