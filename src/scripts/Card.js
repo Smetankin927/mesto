@@ -1,23 +1,24 @@
 export class Card {
-    constructor(data, templateSelector, handleCardImage,likeHandler,dislikeHandler,popupConfirm, myID) {
+    constructor(data, templateSelector, handleCardImage,likeHandler,dislikeHandler,deleteHandler/*,popupConfirm*/, myID) {
         this._text = data.name;
         this._link = data.link;
-        this._id = data._id;
+        this.id = data._id;
         this._owherId = data.owner._id;
         this._userId = myID;
         this._likesArr = data.likes;
         this._templateSelector = templateSelector;
         this._handleCardImage = handleCardImage;
-        this._popupConfirm = popupConfirm;
+        //this.popupConfirm = popupConfirm;
         this.likeHandler = likeHandler;
         this.dislikeHandler = dislikeHandler;
+        this.deleteHandler = deleteHandler;
         this.isLiked = false;
     }
     isMyLiked(){
         this._likesArr.forEach(item =>{
             if(item._id == this._userId){
                 this.isLiked =true;
-                this._likeButton.classList.toggle('cards-grid__like-button_active');
+                this.likeButton.classList.toggle('cards-grid__like-button_active');
             }
         }
         )
@@ -37,7 +38,7 @@ export class Card {
         //text
         this._element.querySelector('.cards-grid__text').textContent = this._text;
         // buttons
-        this._likeButton = this._element.querySelector('.cards-grid__like-button');
+        this.likeButton = this._element.querySelector('.cards-grid__like-button');
         this._deleteButton = this._element.querySelector('.cards-grid__trash-button');//поправить зависимость владельца
         if(this._userId !== this._owherId)
         {
@@ -46,8 +47,8 @@ export class Card {
         //Listeners
         this._setEventListeners()
         //likes
-        this._likesHTML = this._element.querySelector('.cards-grid__like-counter');
-        this._likesHTML.textContent = this._likesArr.length;
+        this.likesHTML = this._element.querySelector('.cards-grid__like-counter');
+        this.likesHTML.textContent = this._likesArr.length;
         //
         this.isMyLiked();
         return this._element;
@@ -56,13 +57,12 @@ export class Card {
     _setEventListeners(){
         
         //Like Button
-        this._likeButton.addEventListener('click', () => {
+        this.likeButton.addEventListener('click', () => {
             this._toggleLike();
         });
         //deletebutton
         this._deleteButton.addEventListener('click', () => {
-            this._popupConfirm.open(this);
-            
+            this.deleteHandler(this); 
         });
         // popup image
         this._image.addEventListener('click', () => {   /// ЗДЕСЬ КАРТИНКА НЕ ОПРЕДЕЛЕНА
@@ -70,13 +70,13 @@ export class Card {
         });
     }
     
-    _deleteCard() {
+    deleteCard() {
         this._deleteButton.closest('.cards-grid__item').remove();
     }
 
     updateLikeCounter(){
         console.log("here");
-        this._likesHTML.textContent = this._likesArr.length;
+        this.likesHTML.textContent = this._likesArr.length;
     }
 
     _toggleLike() {
@@ -88,7 +88,7 @@ export class Card {
             this.isLiked = true;
             this.likeHandler(this);
         }
-        this._likeButton.classList.toggle('cards-grid__like-button_active');
+        //this._likeButton.classList.toggle('cards-grid__like-button_active');
       }
 
 }
